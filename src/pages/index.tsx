@@ -1,4 +1,5 @@
 import { ProjectCard } from '@/componentes/ProjectCard';
+import { getFeaturedProjects } from '@/lib/hygraph/getFeaturedProjects';
 import { getPersonalInfo } from '@/lib/hygraph/getPersonalInfo';
 import { CardsContainer, HeaderContainer, HomeContainer, ImageContainer, InfoContent, MyProjectsContainer } from '@/styles/pages/home';
 import Image from 'next/image';
@@ -13,6 +14,7 @@ interface PersonalInfoProps {
     description: string
     githubUrl: string
     linkedinUrl: string
+    whatsAppNumber: string
     personalPhoto: {
       url: string
     }
@@ -20,9 +22,25 @@ interface PersonalInfoProps {
       url: string
     }
   }[]
+  featuredProjects: ProjectType[]
 }
 
-export default function Home({personalInfo}: PersonalInfoProps) {
+interface ProjectType {
+  title: string
+  shortDescription: string
+  description: {
+    html: string
+  }
+  coverImage: {
+    url: string
+  }
+  tags: {
+    name: string
+  }[]
+}
+
+export default function Home({personalInfo, featuredProjects}: PersonalInfoProps) {
+  console.log(featuredProjects)
   return (
     <HomeContainer>
       <HeaderContainer>
@@ -48,15 +66,19 @@ export default function Home({personalInfo}: PersonalInfoProps) {
               <FilePdf size={24} />
               <a href={personalInfo[0].curriculum.url} target="_blank" rel="noreferrer">Currículo</a>
             </span>
+            <span>
+            <svg width="24px" height="24px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect x="0" fill="none" width="20" height="20"></rect> <g> <path d="M16.8 5.7C14.4 2 9.5.9 5.7 3.2 2 5.5.8 10.5 3.2 14.2l.2.3-.8 3 3-.8.3.2c1.3.7 2.7 1.1 4.1 1.1 1.5 0 3-.4 4.3-1.2 3.7-2.4 4.8-7.3 2.5-11.1zm-2.1 7.7c-.4.6-.9 1-1.6 1.1-.4 0-.9.2-2.9-.6-1.7-.8-3.1-2.1-4.1-3.6-.6-.7-.9-1.6-1-2.5 0-.8.3-1.5.8-2 .2-.2.4-.3.6-.3H7c.2 0 .4 0 .5.4.2.5.7 1.7.7 1.8.1.1.1.3 0 .4.1.2 0 .4-.1.5-.1.1-.2.3-.3.4-.2.1-.3.3-.2.5.4.6.9 1.2 1.4 1.7.6.5 1.2.9 1.9 1.2.2.1.4.1.5-.1s.6-.7.8-.9c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.5.3.1.3.1.7-.1 1z"></path> </g> </g></svg>
+              <a href={`https://wa.me/${personalInfo[0].whatsAppNumber}?text=Ol%C3%A1%2C+vi+seu+site+pessoal+e+gostaria+de+conversar+mais+com+voc%C3%AA+%3A%29`} target="_blank" rel="noreferrer">Chamar no Whats</a>
+            </span>
           </footer>
         </InfoContent>
       </HeaderContainer>
       <MyProjectsContainer>
         <h2>meus projetos mais legais</h2>
         <CardsContainer>
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+          {featuredProjects.map((project, index)=>(
+            <ProjectCard key={index} project={project as ProjectType} />
+          ))}
         </CardsContainer>
         <Link className="more-projects-link" href="/">ver mais</Link>
       </MyProjectsContainer>
@@ -66,10 +88,12 @@ export default function Home({personalInfo}: PersonalInfoProps) {
 
 export const getStaticProps = async () => {
   const personalInfo = await getPersonalInfo()
+  const featuredProjects = await getFeaturedProjects()
 
   return {
     props: {
-      personalInfo
+      personalInfo,
+      featuredProjects
     },
     revalidate: 10
   }

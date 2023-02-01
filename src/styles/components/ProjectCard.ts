@@ -20,6 +20,7 @@ export const ProductImageContainer = styled.div`
 
 export const TagContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   padding: 1rem 0;
   
@@ -29,8 +30,4 @@ export const TagContainer = styled.div`
     padding: 0.2rem;
     border-radius: 6px;
   }
-
-  @media (max-width: 764px){
-      justify-content: center;
-    }
 `

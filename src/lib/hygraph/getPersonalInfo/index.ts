@@ -11,6 +11,7 @@ export async function getPersonalInfo(){
       linkedinUrl
       description
       githubUrl
+      whatsAppNumber
       curriculum {
         url
       }

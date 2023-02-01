@@ -2,21 +2,35 @@ import { ProductImageContainer, ProjectCardContainer, TagContainer } from '@/sty
 import Image from 'next/image';
 import imageExample from '../../assets/example_image.jpg';
 
-export function ProjectCard(){
+interface ProjectType {
+  project: {
+    title: string
+    shortDescription: string
+    description: {
+      html: string
+    }
+    coverImage: {
+      url: string
+    }
+    tags: {
+      name: string
+    }[]
+  }
+}
+
+export function ProjectCard({project}: ProjectType){
   return (
     <ProjectCardContainer>
       <ProductImageContainer>
-        <Image src={imageExample} width={300} height={200} alt="" />
+        <Image src={project.coverImage.url} width={300} height={200} alt="" />
       </ProductImageContainer>
       <TagContainer>
-        <span>React</span>
-        <span>Typescript</span>
+      {project.tags.map((tag, index)=> (
+        <span key={index}>{tag.name}</span>
+      ))}
       </TagContainer>
-      <h3>Ignite Shop</h3>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat veritatis, 
-        nulla consequuntur ipsum dolore, vero nostrum.
-      </p>
+      <h3>{project.title}</h3>
+      <p>{project.shortDescription}</p>
       
     </ProjectCardContainer>
   )
