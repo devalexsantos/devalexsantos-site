@@ -1,6 +1,8 @@
+import { ProjectCard } from '@/componentes/ProjectCard';
 import { getPersonalInfo } from '@/lib/hygraph/getPersonalInfo';
-import { HeaderContainer, HomeContainer, ImageContainer, InfoContent } from '@/styles/pages/home';
+import { CardsContainer, HeaderContainer, HomeContainer, ImageContainer, InfoContent, MyProjectsContainer } from '@/styles/pages/home';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowSquareOut, FilePdf } from 'phosphor-react';
 
 
@@ -49,6 +51,15 @@ export default function Home({personalInfo}: PersonalInfoProps) {
           </footer>
         </InfoContent>
       </HeaderContainer>
+      <MyProjectsContainer>
+        <h2>meus projetos mais legais</h2>
+        <CardsContainer>
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        </CardsContainer>
+        <Link className="more-projects-link" href="/">ver mais</Link>
+      </MyProjectsContainer>
     </HomeContainer>
   )
 }

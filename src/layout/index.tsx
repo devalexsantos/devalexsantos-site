@@ -27,7 +27,9 @@ export function Layout({children, darkIsSelected, changeTheme}: LayoutProps){
           />
     </HeaderNavigation>
       {children}
-    <Footer/>
+    <Footer>
+      Copyright - 2023 - Alex Santos
+    </Footer>
     </>
   )
 }

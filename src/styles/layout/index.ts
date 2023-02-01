@@ -14,5 +14,10 @@ export const HeaderNavigation = styled.div`
 `
 
 export const Footer = styled.footer`
+  display: flex;
+  margin: auto;
+  margin: 4rem 0;
+  justify-content: center;
 
+  font-size: 01rem;
 `

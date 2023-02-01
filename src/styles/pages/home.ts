@@ -84,3 +84,42 @@ export const InfoContent = styled.div`
   }
 
 `
+
+export const MyProjectsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 3rem;
+  align-items: center;
+  gap: 1rem;
+
+  a.more-projects-link {
+    padding: 0.3rem 1rem;
+    border: 1px solid ${(props)=> props.theme.base};
+    border-radius: 6px;
+
+
+    &:hover {
+      background-color: ${(props)=> props.theme.base};
+      color: ${(props)=> props.theme.secondary};
+      text-decoration: none;
+    }
+  }
+`
+
+export const CardsContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 1rem;
+  grid-column-gap: 1rem;
+
+  @media (max-width: 1160px){
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+  @media (max-width: 768px){
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+`
