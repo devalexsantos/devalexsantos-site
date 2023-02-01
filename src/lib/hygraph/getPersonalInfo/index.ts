@@ -11,6 +11,9 @@ export async function getPersonalInfo(){
       linkedinUrl
       description
       githubUrl
+      curriculum {
+        url
+      }
     }
   }
     `
