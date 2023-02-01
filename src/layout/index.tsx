@@ -1,19 +1,20 @@
+import { ThemeModeContext } from '@/contexts/ThemeModeContext';
 import { Footer, HeaderNavigation } from '@/styles/layout';
+import { useContext } from 'react';
 import Switch from "react-switch";
 
 interface LayoutProps {
   children: React.ReactNode
-  darkIsSelected: boolean
-  changeTheme: ()=> void
 }
 
-export function Layout({children, darkIsSelected, changeTheme}: LayoutProps){
+export function Layout({children}: LayoutProps){
+  const { darkTheme, handleChangeTheme } = useContext(ThemeModeContext)
   return (
     <>
     <HeaderNavigation>
         <Switch
-          onChange={changeTheme}
-          checked={darkIsSelected}
+          onChange={handleChangeTheme}
+          checked={darkTheme}
           className="react-switch"
           onColor="#29292E"
           offHandleColor="#08f"
