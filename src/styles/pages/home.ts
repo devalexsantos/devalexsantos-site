@@ -123,3 +123,25 @@ export const CardsContainer = styled.div`
     }
 
 `
+
+export const MyPostsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 3rem;
+  align-items: center;
+  gap: 1rem;
+
+  a.more-projects-link {
+    padding: 0.3rem 1rem;
+    border: 1px solid ${(props)=> props.theme.base};
+    border-radius: 6px;
+
+
+    &:hover {
+      background-color: ${(props)=> props.theme.base};
+      color: ${(props)=> props.theme.secondary};
+      text-decoration: none;
+    }
+  }
+`

@@ -1,16 +1,23 @@
+import { PostCard } from '@/componentes/PostCard';
 import { ProjectCard } from '@/componentes/ProjectCard';
+import { getFavoritePosts } from '@/lib/hygraph/getFavoritePosts';
 import { getFeaturedProjects } from '@/lib/hygraph/getFeaturedProjects';
 import { getPersonalInfo } from '@/lib/hygraph/getPersonalInfo';
-import { CardsContainer, HeaderContainer, HomeContainer, ImageContainer, InfoContent, MyProjectsContainer } from '@/styles/pages/home';
+import { CardsContainer, HeaderContainer, HomeContainer, ImageContainer, InfoContent, MyPostsContainer, MyProjectsContainer } from '@/styles/pages/home';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowSquareOut, FilePdf } from 'phosphor-react';
 
 
 
-interface PersonalInfoProps {
-  personalInfo: {
-    name: string
+interface HomeProps {
+  personalInfo: PersonalInfoTypes[]
+  featuredProjects: ProjectTypes[]
+  favoritePosts: PostTypes[]
+}
+
+interface PersonalInfoTypes {
+  name: string
     description: string
     githubUrl: string
     linkedinUrl: string
@@ -21,11 +28,9 @@ interface PersonalInfoProps {
     curriculum: {
       url: string
     }
-  }[]
-  featuredProjects: ProjectType[]
 }
 
-interface ProjectType {
+interface ProjectTypes {
   title: string
   shortDescription: string
   description: {
@@ -39,8 +44,24 @@ interface ProjectType {
   }[]
 }
 
-export default function Home({personalInfo, featuredProjects}: PersonalInfoProps) {
-  console.log(featuredProjects)
+interface PostTypes {
+  id: string
+  slug: string
+  title: string
+  shortDescription: string
+  date: string
+  createdAt: string
+  content: {
+    html: string
+  }
+  coverImage: {
+    url: string
+  }
+  tags: string[]
+}
+
+export default function Home({personalInfo, featuredProjects, favoritePosts}: HomeProps) {
+
   return (
     <HomeContainer>
       <HeaderContainer>
@@ -77,11 +98,21 @@ export default function Home({personalInfo, featuredProjects}: PersonalInfoProps
         <h2>meus projetos mais legais</h2>
         <CardsContainer>
           {featuredProjects.map((project, index)=>(
-            <ProjectCard key={index} project={project as ProjectType} />
+            <ProjectCard key={index} project={project as ProjectTypes} />
           ))}
         </CardsContainer>
         <Link className="more-projects-link" href="/">ver mais</Link>
       </MyProjectsContainer>
+
+      <MyPostsContainer>
+        <h2>meus últimos posts</h2>
+        <CardsContainer>
+          {favoritePosts.map((post, index)=>(
+            <PostCard key={index} post={post as PostTypes} />
+          ))}
+        </CardsContainer>
+        <Link className="more-projects-link" href="/">ver mais</Link>
+      </MyPostsContainer>
     </HomeContainer>
   )
 }
@@ -89,11 +120,13 @@ export default function Home({personalInfo, featuredProjects}: PersonalInfoProps
 export const getStaticProps = async () => {
   const personalInfo = await getPersonalInfo()
   const featuredProjects = await getFeaturedProjects()
+  const favoritePosts = await getFavoritePosts()
 
   return {
     props: {
       personalInfo,
-      featuredProjects
+      featuredProjects,
+      favoritePosts
     },
     revalidate: 10
   }
