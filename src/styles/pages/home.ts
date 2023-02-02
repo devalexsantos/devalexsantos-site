@@ -16,7 +16,7 @@ export const HeaderContainer = styled.div`
   border-radius: 8px;
   margin-top: 70px;
 
-  @media (max-width: 764px){
+  @media (max-width: 980px){
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -53,7 +53,7 @@ export const InfoContent = styled.div`
       }
     }
 
-    @media (max-width: 764px){
+    @media (max-width: 980px){
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -76,7 +76,7 @@ export const InfoContent = styled.div`
       
     }
 
-    @media (max-width: 764px){
+    @media (max-width: 980px){
       flex-direction: column;
       align-items: center;
     }

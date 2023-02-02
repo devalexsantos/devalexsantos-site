@@ -1,8 +1,10 @@
 import { ThemeModeContext } from '@/contexts/ThemeModeContext';
-import { Footer, HeaderNavigation, NavigationContent } from '@/styles/layout';
+import { Footer, HeaderNavigation, NavButton, NavContent, NavDesktop, NavigationContent, NavItem, NavMobile, NavSeparator } from '@/styles/layout';
 import Link from 'next/link';
 import { useContext } from 'react';
 import Switch from "react-switch";
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import { List } from 'phosphor-react';
 
 interface LayoutProps {
   children: React.ReactNode
@@ -14,14 +16,46 @@ export function Layout({children}: LayoutProps){
     <>
     <HeaderNavigation>
       <NavigationContent>
-      <nav>
+      <NavDesktop>
         <ul>
           <li><strong><Link href="/">Início</Link></strong></li>
           <li><strong><Link href="/projects">Projetos</Link></strong></li>
           <li><strong><Link href="/posts">Posts</Link></strong></li>
           <li><strong><Link href="/about">Sobre</Link></strong></li>
         </ul>
-      </nav>
+      </NavDesktop>
+      <NavMobile>
+        <DropdownMenu.Root>
+          <NavButton>
+            <List size={24} />
+          </NavButton>
+          <DropdownMenu.Portal>
+            <NavContent>
+              <NavItem>
+                <Link href="/"><strong>Início</strong></Link>
+              </NavItem>
+
+              <NavSeparator />
+
+              <NavItem>
+                <Link href="/projects"><strong>Projetos</strong></Link>
+              </NavItem>
+
+              <NavSeparator />
+
+              <NavItem>
+                  <Link href="/posts"><strong>Posts</strong></Link>
+              </NavItem>
+
+              <NavSeparator />
+
+              <NavItem>
+                  <Link href="/about"><strong>Sobre</strong></Link>
+              </NavItem>
+            </NavContent>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
+      </NavMobile>
         <Switch
           onChange={handleChangeTheme}
           checked={darkTheme}
