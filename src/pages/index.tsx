@@ -94,7 +94,7 @@ export default function Home({personalInfo, featuredProjects, favoritePosts}: Ho
           </footer>
         </InfoContent>
       </HeaderContainer>
-      <MyProjectsContainer>
+      <MyProjectsContainer id="principais-projetos">
         <h2>meus projetos mais legais</h2>
         <CardsContainer>
           {featuredProjects.map((project, index)=>(
@@ -104,7 +104,7 @@ export default function Home({personalInfo, featuredProjects, favoritePosts}: Ho
         <Link className="more-projects-link" href="/">ver mais</Link>
       </MyProjectsContainer>
 
-      <MyPostsContainer>
+      <MyPostsContainer id="ultimos-posts">
         <h2>meus últimos posts</h2>
         <CardsContainer>
           {favoritePosts.map((post, index)=>(

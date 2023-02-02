@@ -4,9 +4,7 @@ export const HomeContainer = styled.header`
   width: 100%;
   max-width: 1124px;
   padding: 0 2rem;
-  margin: 0 auto;
-
-  
+  margin: 0 auto;  
 `
 
 export const HeaderContainer = styled.div`
@@ -16,6 +14,7 @@ export const HeaderContainer = styled.div`
   background-color: ${(props)=> props.theme.secondary};
   padding: 2rem;
   border-radius: 8px;
+  margin-top: 70px;
 
   @media (max-width: 764px){
     flex-direction: column;
