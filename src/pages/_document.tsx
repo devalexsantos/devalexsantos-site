@@ -24,7 +24,7 @@ export default class MyDocument extends Document {
   }
   render(): JSX.Element {
     return (
-      <Html>
+      <Html className='scroll-smooth' style={{scrollBehavior:'smooth'}}>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

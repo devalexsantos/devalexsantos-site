@@ -21,7 +21,7 @@ export function Layout({children}: LayoutProps){
           <li><strong><Link href="/">Início</Link></strong></li>
           <li><strong><Link href="/projects">Projetos</Link></strong></li>
           <li><strong><Link href="/posts">Posts</Link></strong></li>
-          <li><strong><Link href="/about">Sobre</Link></strong></li>
+          <li><strong><Link href="/#about">Sobre</Link></strong></li>
         </ul>
       </NavDesktop>
       <NavMobile>
