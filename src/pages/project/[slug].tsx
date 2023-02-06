@@ -21,52 +21,56 @@ interface ProjectProps {
 }
 
 export default function Project({project}: ProjectProps){
-        return (
-            <>
-            <Head>
-                <title>{project[0].title} | Alex Santos</title>
-            </Head>
-            <ProjectContainer>
-                <HeaderProjectContainer>
-                    <header>
-                        <Link href="/"><ArrowBendUpLeft size={24} />Voltar</Link>
-                        <span>Publicado {' '}{formatDistanceToNow(
-                  new Date(new Date(project[0].createdAt).toISOString()),
-                  {
-                    addSuffix: true,
-                    locale: ptBR,
-                  },
-                )}</span>
-                    </header>
-                        <h1>{project[0].title}</h1>
-                    <div className="tags-session">
-                        <p>tags: </p>
-                        <div className="tags-content">
-                        {project[0].tags.map((tag, index)=> (
-                            <span key={index}>{tag.name}</span>
-                        ))}
+        
+        if(project){
+            return (
+                <>
+                <Head>
+                    <title>{project[0].title} | Alex Santos</title>
+                </Head>
+                <ProjectContainer>
+                    <HeaderProjectContainer>
+                        <header>
+                            <Link href="/"><ArrowBendUpLeft size={24} />Voltar</Link>
+                            <span>Publicado {' '}{formatDistanceToNow(
+                      new Date(new Date(project[0].createdAt).toISOString()),
+                      {
+                        addSuffix: true,
+                        locale: ptBR,
+                      },
+                    )}</span>
+                        </header>
+                            <h1>{project[0].title}</h1>
+                        <div className="tags-session">
+                            <p>tags: </p>
+                            <div className="tags-content">
+                            {project[0].tags.map((tag, index)=> (
+                                <span key={index}>{tag.name}</span>
+                            ))}
+                            </div>
                         </div>
+                        
+                    </HeaderProjectContainer>
+    
+                    <ContentContainer>
+                        <CoverImageContainer>
+                            <Image src={project[0].coverImage.url} alt="" width={500} height={500} />
+                        </CoverImageContainer>
+    
+                        <DescriptionContainer>
+                        <ReactMarkdown>
+                            {project[0].contentDescription}
+                        </ReactMarkdown>
+                        </DescriptionContainer>
+                    </ContentContainer>
+                    <div className="back-to-homepage">
+                        <Link href="/"><ArrowBendUpLeft size={24} />Voltar</Link>
                     </div>
-                    
-                </HeaderProjectContainer>
-
-                <ContentContainer>
-                    <CoverImageContainer>
-                        <Image src={project[0].coverImage.url} alt="" width={500} height={500} />
-                    </CoverImageContainer>
-
-                    <DescriptionContainer>
-                    <ReactMarkdown>
-                        {project[0].contentDescription}
-                    </ReactMarkdown>
-                    </DescriptionContainer>
-                </ContentContainer>
-                <div className="back-to-homepage">
-                    <Link href="/"><ArrowBendUpLeft size={24} />Voltar</Link>
-                </div>
-            </ProjectContainer>
-            </>
-        )
+                </ProjectContainer>
+                </>
+            )
+        }
+        
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

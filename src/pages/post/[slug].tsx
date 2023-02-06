@@ -21,6 +21,7 @@ interface PostProps {
 
 export default function Post({post}: PostProps){
 
+    if(post){
         return (
             <>
             <Head>
@@ -67,6 +68,8 @@ export default function Post({post}: PostProps){
             </PostContainer>
             </>
         )
+    }    
+    
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
