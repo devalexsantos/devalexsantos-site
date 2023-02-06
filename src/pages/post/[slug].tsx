@@ -36,6 +36,7 @@ export default function Post({post}: PostProps){
                     </header>
                         <h1>{post[0].title}</h1>
                     <div className="tags-session">
+                        <p>tags: </p>
                         {post[0].tags.map((tag, index)=> (
                             <span key={index}>{tag}</span>
                         ))}

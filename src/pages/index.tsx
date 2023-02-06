@@ -1,4 +1,3 @@
-import { AboutInfoTypes } from '@/@types/AboutInfo';
 import { PersonalInfoTypes } from '@/@types/PersonalInfo';
 import { PostTypes } from '@/@types/PostTypes';
 import { ProjectTypes } from '@/@types/Project';
@@ -8,11 +7,10 @@ import { getAboutInfo } from '@/lib/hygraph/getAboutInfo';
 import { getFavoritePosts } from '@/lib/hygraph/getFavoritePosts';
 import { getFeaturedProjects } from '@/lib/hygraph/getFeaturedProjects';
 import { getPersonalInfo } from '@/lib/hygraph/getPersonalInfo';
-import { AboutContainer, AboutContent, CardsContainer, HeaderContainer, HomeContainer, ImageContainer, InfoContent, MyPostsContainer, MyProjectsContainer } from '@/styles/pages/home';
+import { CardsContainer, HeaderContainer, HomeContainer, ImageContainer, InfoContent, MyPostsContainer, MyProjectsContainer } from '@/styles/pages/home';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowSquareOut, FilePdf } from 'phosphor-react';
-import ReactMarkdown from 'react-markdown'
 
 
 
@@ -20,10 +18,9 @@ interface HomeProps {
   personalInfo: PersonalInfoTypes[]
   featuredProjects: ProjectTypes[]
   favoritePosts: PostTypes[]
-  aboutInfo: AboutInfoTypes[]
 }
 
-export default function Home({personalInfo, featuredProjects, favoritePosts, aboutInfo}: HomeProps) {
+export default function Home({personalInfo, featuredProjects, favoritePosts}: HomeProps) {
 
   return (
     <HomeContainer>
@@ -79,17 +76,7 @@ export default function Home({personalInfo, featuredProjects, favoritePosts, abo
         <Link className="more-projects-link" href="/">ver mais</Link>
       </MyPostsContainer>
 
-      <AboutContainer id="about">
-        <h2>sobre mim</h2>
-        <AboutContent>
-          <Image src={aboutInfo[0].aboutPhoto.url} width={400} height={250} alt="Foto do setup de Alex Santos"/>
-          <div>
-            <ReactMarkdown>
-              {aboutInfo[0].aboutDescription}
-            </ReactMarkdown>
-          </div>
-        </AboutContent>
-      </AboutContainer>
+      
     </HomeContainer>
   )
 }
@@ -98,14 +85,12 @@ export const getStaticProps = async () => {
   const personalInfo = await getPersonalInfo()
   const featuredProjects = await getFeaturedProjects()
   const favoritePosts = await getFavoritePosts()
-  const aboutInfo = await getAboutInfo()
 
   return {
     props: {
       personalInfo,
       featuredProjects,
-      favoritePosts,
-      aboutInfo
+      favoritePosts
     },
     revalidate: 10
   }

@@ -75,14 +75,78 @@ export const NavButton = styled(DropdownMenu.Trigger)`
   padding: 10px;
   border-radius: 999px;
   background-color: ${(props)=> props.theme.secondary};
-  color: ${(props)=> props.theme.base}
+  color: ${(props)=> props.theme.base};
 `
 
 export const Footer = styled.footer`
-  display: flex;
+  width: 100%;
+  max-width: 1124px;
   margin: auto;
-  margin: 4rem 0;
+  align-items: center;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-
   font-size: 01rem;
+  gap: 20px;
+
+  span {
+    margin-bottom: 40px;
+  }
+`
+
+export const AboutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 3rem;
+  align-items: center;
+  gap: 1rem;
+
+  a.more-projects-link {
+    padding: 0.3rem 1rem;
+    border: 1px solid ${(props)=> props.theme.base};
+    border-radius: 6px;
+
+
+    &:hover {
+      background-color: ${(props)=> props.theme.base};
+      color: ${(props)=> props.theme.secondary};
+      text-decoration: none;
+    }
+  }
+`
+
+export const AboutContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+
+  img {
+    max-width: 350px;
+    border-radius: 6px;
+  }
+
+  p {
+    text-indent: 10px;
+    margin-top: 0.5rem;
+  }
+
+  background-color: ${(props)=> props.theme.secondary};
+
+  @media (max-width: 1080px){
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+      }
+    }
+
+  
 `

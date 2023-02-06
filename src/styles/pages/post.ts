@@ -36,6 +36,10 @@ export const HeaderPostContainer = styled.div`
   margin-top: 70px;
 
   .tags-session {
+      P {
+        font-size: 0.9rem;
+        line-height: 2rem;
+      }
       span {
         padding: 0.2rem 1rem;
         border: 1px solid ${(props)=> props.theme.base};

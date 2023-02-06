@@ -1,10 +1,13 @@
 import { ThemeModeContext } from '@/contexts/ThemeModeContext';
-import { Footer, HeaderNavigation, NavButton, NavContent, NavDesktop, NavigationContent, NavItem, NavMobile, NavSeparator } from '@/styles/layout';
+import { AboutContainer, AboutContent, Footer, HeaderNavigation, NavButton, NavContent, NavDesktop, NavigationContent, NavItem, NavMobile, NavSeparator } from '@/styles/layout';
 import Link from 'next/link';
 import { useContext } from 'react';
 import Switch from "react-switch";
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { List } from 'phosphor-react';
+import Image from 'next/image';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import imageAbout from '../assets/about-photo-devalexsantos.jpg'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -21,7 +24,7 @@ export function Layout({children}: LayoutProps){
           <li><strong><Link href="/">Início</Link></strong></li>
           <li><strong><Link href="/projects">Projetos</Link></strong></li>
           <li><strong><Link href="/posts">Posts</Link></strong></li>
-          <li><strong><Link href="/#about">Sobre</Link></strong></li>
+          <li><strong><Link href="#about">Sobre</Link></strong></li>
         </ul>
       </NavDesktop>
       <NavMobile>
@@ -50,7 +53,7 @@ export function Layout({children}: LayoutProps){
               <NavSeparator />
 
               <NavItem>
-                  <Link href="/about"><strong>Sobre</strong></Link>
+                  <Link href="#about"><strong>Sobre</strong></Link>
               </NavItem>
             </NavContent>
           </DropdownMenu.Portal>
@@ -74,7 +77,20 @@ export function Layout({children}: LayoutProps){
     </HeaderNavigation>
       {children}
     <Footer>
-      Copyright - 2023 - Alex Santos
+    <AboutContainer id="about">
+        <h2>sobre mim</h2>
+        <AboutContent>
+          <Image src={imageAbout} width={400} height={250} alt="Foto do setup de Alex Santos"/>
+          <div>
+            <ReactMarkdown>
+            Oi! Eu sou o **Alex**, tenho 29 anos, sou de **Salvador-BA** e sou apaixonado por tecnologia, séries/filmes de fim de mundo, hip hop e videogames! Sou casado com uma Enfermeira maravilhosa chamada Karen há 09 anos e atualmente temos um filhinho de 04 patas chamado Pixel. 
+            Decidi colocar a foto do meu setup ao lado/acima pois é um dos meus hobbies - **tecnologia** e  **produtividade**. Estou a todo momento investindo em meu espaço de trabalho (*home office*).  Eu acredito que se você tem um ambiente de trabalho organizado tudo flui muito melhor. 
+            </ReactMarkdown>
+          </div>
+        </AboutContent>
+      </AboutContainer>
+    
+      <span>Copyright - 2023 - Alex Santos</span>
     </Footer>
     </>
   )
