@@ -1,3 +1,7 @@
+import { AboutInfoTypes } from '@/@types/AboutInfo';
+import { PersonalInfoTypes } from '@/@types/PersonalInfo';
+import { PostTypes } from '@/@types/PostTypes';
+import { ProjectTypes } from '@/@types/Project';
 import { PostCard } from '@/componentes/PostCard';
 import { ProjectCard } from '@/componentes/ProjectCard';
 import { getAboutInfo } from '@/lib/hygraph/getAboutInfo';
@@ -16,58 +20,7 @@ interface HomeProps {
   personalInfo: PersonalInfoTypes[]
   featuredProjects: ProjectTypes[]
   favoritePosts: PostTypes[]
-  aboutInfo: AboutInfo[]
-}
-
-interface PersonalInfoTypes {
-  name: string
-    description: string
-    githubUrl: string
-    linkedinUrl: string
-    whatsAppNumber: string
-    personalPhoto: {
-      url: string
-    }
-    curriculum: {
-      url: string
-    }
-}
-
-interface ProjectTypes {
-  title: string
-  shortDescription: string
-  description: {
-    html: string
-  }
-  coverImage: {
-    url: string
-  }
-  tags: {
-    name: string
-  }[]
-}
-
-interface PostTypes {
-  id: string
-  slug: string
-  title: string
-  shortDescription: string
-  date: string
-  createdAt: string
-  content: {
-    html: string
-  }
-  coverImage: {
-    url: string
-  }
-  tags: string[]
-}
-
-interface AboutInfo {
-    aboutDescription: string
-    aboutPhoto: {
-      url: string
-    }
+  aboutInfo: AboutInfoTypes[]
 }
 
 export default function Home({personalInfo, featuredProjects, favoritePosts, aboutInfo}: HomeProps) {
@@ -118,7 +71,9 @@ export default function Home({personalInfo, featuredProjects, favoritePosts, abo
         <h2>meus últimos posts</h2>
         <CardsContainer>
           {favoritePosts.map((post, index)=>(
-            <PostCard key={index} post={post as PostTypes} />
+            <Link key={index} href={`/post/${post.slug}`}>
+              <PostCard post={post as PostTypes} />
+            </Link>
           ))}
         </CardsContainer>
         <Link className="more-projects-link" href="/">ver mais</Link>

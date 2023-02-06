@@ -7,6 +7,12 @@ export const PostCardContainer = styled.div`
   width: 100%;
   margin: auto;
 
+  p {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   
 `
 
@@ -14,7 +20,9 @@ export const PostImageContainer = styled.div`
   display: flex;
   justify-content: center;
   img {
-      border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
   }
 `
 

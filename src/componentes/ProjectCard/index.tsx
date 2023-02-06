@@ -22,7 +22,7 @@ export function ProjectCard({project}: ProjectType){
   return (
     <ProjectCardContainer>
       <ProductImageContainer>
-        <Image src={project.coverImage.url} width={300} height={200} alt="" />
+        <Image src={project.coverImage.url} width={384} height={307} alt="" />
       </ProductImageContainer>
       <TagContainer>
       {project.tags.map((tag, index)=> (

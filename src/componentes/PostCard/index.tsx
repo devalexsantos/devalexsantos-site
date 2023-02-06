@@ -10,7 +10,7 @@ interface PostTypes {
   date: string
   createdAt: string
   content: {
-    html: string
+    markdown: string
   }
   coverImage: {
     url: string
@@ -23,7 +23,7 @@ export function PostCard({post}: PostTypes){
   return (
     <PostCardContainer>
       <PostImageContainer>
-        <Image src={post.coverImage.url} width={300} height={200} alt="" />
+        <Image src={post.coverImage.url} width={384} height={307} alt="" />
       </PostImageContainer>
       <TagContainer>
       {post.tags.map((tag, index)=> (
