@@ -35,6 +35,11 @@ export default function Post({post}: PostProps){
                 )}</span>
                     </header>
                         <h1>{post[0].title}</h1>
+                    <div className="tags-session">
+                        {post[0].tags.map((tag, index)=> (
+                            <span key={index}>{tag}</span>
+                        ))}
+                    </div>
                     
                 </HeaderPostContainer>
 
@@ -49,9 +54,9 @@ export default function Post({post}: PostProps){
                     </ReactMarkdown>
                     </DescriptionContainer>
                 </ContentContainer>
-                <footer>
+                <div className="back-to-homepage">
                     <Link href="/"><ArrowBendUpLeft size={24} />Voltar</Link>
-                </footer>
+                </div>
             </PostContainer>
         )
     }

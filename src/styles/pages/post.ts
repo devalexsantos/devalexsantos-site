@@ -8,7 +8,7 @@ export const PostContainer = styled.header`
   display: flex;
   flex-direction: column;
 
-  footer {
+  .back-to-homepage {
     width: 100%;
     margin-top: 40px;
     display: flex;
@@ -35,6 +35,15 @@ export const HeaderPostContainer = styled.div`
   border-radius: 8px;
   margin-top: 70px;
 
+  .tags-session {
+      span {
+        padding: 0.2rem 1rem;
+        border: 1px solid ${(props)=> props.theme.base};
+        font-size: 0.9rem;
+        border-radius: 6px;
+      }
+    }
+
   header {
     width: 100%;
     display: flex;
@@ -56,8 +65,6 @@ export const HeaderPostContainer = styled.div`
   }
 
   @media (max-width: 980px){
-    align-items: center;
-    text-align: center;
     h1 {
       font-size: 1.5rem;
     }
