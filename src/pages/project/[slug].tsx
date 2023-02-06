@@ -1,6 +1,7 @@
-import { PostTypes } from '@/@types/PostTypes'
-import { getPost } from '@/lib/hygraph/getPost'
-import { ContentContainer, CoverImageContainer, DescriptionContainer, HeaderPostContainer, PostContainer } from '@/styles/pages/post'
+import { ProjectTypes } from '@/@types/Project'
+import { getIndividualProject } from '@/lib/hygraph/getIndividualProject'
+import { ContentContainer, CoverImageContainer, DescriptionContainer } from '@/styles/pages/post'
+import { HeaderProjectContainer, ProjectContainer } from '@/styles/pages/project'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { GetStaticPaths, GetStaticProps } from 'next'
@@ -15,62 +16,61 @@ interface IParams extends ParsedUrlQuery {
     slug: string
 }
 
-interface PostProps {
-    post: PostTypes[]
+interface ProjectProps {
+    project: ProjectTypes[]
 }
 
-export default function Post({post}: PostProps){
-
+export default function Project({project}: ProjectProps){
         return (
             <>
             <Head>
-                <title>{post[0].title} | Alex Santos</title>
+                <title>{project[0].title} | Alex Santos</title>
             </Head>
-            <PostContainer>
-                <HeaderPostContainer>
+            <ProjectContainer>
+                <HeaderProjectContainer>
                     <header>
                         <Link href="/"><ArrowBendUpLeft size={24} />Voltar</Link>
                         <span>Publicado {' '}{formatDistanceToNow(
-                  new Date(new Date(post[0].createdAt).toISOString()),
+                  new Date(new Date(project[0].createdAt).toISOString()),
                   {
                     addSuffix: true,
                     locale: ptBR,
                   },
                 )}</span>
                     </header>
-                        <h1>{post[0].title}</h1>
+                        <h1>{project[0].title}</h1>
                     <div className="tags-session">
                         <p>tags: </p>
                         <div className="tags-content">
-                            {post[0].tags.map((tag, index)=> (
-                                <span key={index}>{tag}</span>
-                            ))}
+                        {project[0].tags.map((tag, index)=> (
+                            <span key={index}>{tag.name}</span>
+                        ))}
                         </div>
                     </div>
                     
-                </HeaderPostContainer>
+                </HeaderProjectContainer>
 
                 <ContentContainer>
                     <CoverImageContainer>
-                        <Image src={post[0].coverImage.url} alt="" width={500} height={500} />
+                        <Image src={project[0].coverImage.url} alt="" width={500} height={500} />
                     </CoverImageContainer>
 
                     <DescriptionContainer>
                     <ReactMarkdown>
-                        {post[0].content.markdown}
+                        {project[0].contentDescription}
                     </ReactMarkdown>
                     </DescriptionContainer>
                 </ContentContainer>
                 <div className="back-to-homepage">
                     <Link href="/"><ArrowBendUpLeft size={24} />Voltar</Link>
                 </div>
-            </PostContainer>
+            </ProjectContainer>
             </>
         )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const arr: string[] = ['principios-5s-livro-codigo-limpo']
+    const arr: string[] = ['coffee-delivery']
     const paths = arr.map((slug) => {
         return {
             params: { slug },
@@ -81,11 +81,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps  = async (context) => {
     const { slug } = context.params as IParams
-    const post = await getPost(slug)
+    const project = await getIndividualProject(slug)
 
     return {
         props: {
-            post
+            project
         }
     }
 

@@ -1,21 +1,22 @@
 import { hygraph } from '../hygraph';
 
-export async function getFeaturedProjects(){
+
+export async function getIndividualProject(slug: string){
   const { projects } = await hygraph.request(
     `{
-      projects(where: {favorite: true}) {
+      projects(where: {slug: "${slug}"}) {
         title
         slug
-        shortDescription
-        contentDescription
-        coverImage {
-          url
-        }
         tags {
           name
         }
+        createdAt
+        coverImage {
+          url
+        }
+        contentDescription
       }
-    }
+  }
     `
   );
     

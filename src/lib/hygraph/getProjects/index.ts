@@ -6,9 +6,7 @@ export async function getProjects(){
       projects {
         title
         shortDescription
-        description {
-          html
-        }
+        contentDescription
         coverImage {
           url
         }

@@ -1,9 +1,9 @@
 export interface ProjectTypes {
     title: string
+    slug: string
     shortDescription: string
-    description: {
-      html: string
-    }
+    createdAt: string
+    contentDescription: string
     coverImage: {
       url: string
     }

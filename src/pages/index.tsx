@@ -3,11 +3,11 @@ import { PostTypes } from '@/@types/PostTypes';
 import { ProjectTypes } from '@/@types/Project';
 import { PostCard } from '@/componentes/PostCard';
 import { ProjectCard } from '@/componentes/ProjectCard';
-import { getAboutInfo } from '@/lib/hygraph/getAboutInfo';
 import { getFavoritePosts } from '@/lib/hygraph/getFavoritePosts';
 import { getFeaturedProjects } from '@/lib/hygraph/getFeaturedProjects';
 import { getPersonalInfo } from '@/lib/hygraph/getPersonalInfo';
 import { CardsContainer, HeaderContainer, HomeContainer, ImageContainer, InfoContent, MyPostsContainer, MyProjectsContainer } from '@/styles/pages/home';
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowSquareOut, FilePdf } from 'phosphor-react';
@@ -23,6 +23,10 @@ interface HomeProps {
 export default function Home({personalInfo, featuredProjects, favoritePosts}: HomeProps) {
 
   return (
+    <>
+    <Head>
+      <title>Alex Santos | Developer</title>
+    </Head>
     <HomeContainer>
       <HeaderContainer>
         <ImageContainer>
@@ -58,7 +62,7 @@ export default function Home({personalInfo, featuredProjects, favoritePosts}: Ho
         <h2>meus projetos mais legais</h2>
         <CardsContainer>
           {featuredProjects.map((project, index)=>(
-            <ProjectCard key={index} project={project as ProjectTypes} />
+            <Link key={index} href={`/project/${project.slug}`}><ProjectCard project={project as ProjectTypes} /></Link>
           ))}
         </CardsContainer>
         <Link className="more-projects-link" href="/">ver mais</Link>
@@ -78,6 +82,7 @@ export default function Home({personalInfo, featuredProjects, favoritePosts}: Ho
 
       
     </HomeContainer>
+    </>
   )
 }
 

@@ -1,14 +1,12 @@
 import { ProductImageContainer, ProjectCardContainer, TagContainer } from '@/styles/components/ProjectCard';
 import Image from 'next/image';
-import imageExample from '../../assets/example_image.jpg';
 
 interface ProjectType {
   project: {
     title: string
+    slug: string
     shortDescription: string
-    description: {
-      html: string
-    }
+    contentDescription: string
     coverImage: {
       url: string
     }

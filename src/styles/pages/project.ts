@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const PostContainer = styled.header`
+export const ProjectContainer = styled.header`
   width: 100%;
   max-width: 1124px;
   padding: 0 2rem;
@@ -25,7 +25,7 @@ export const PostContainer = styled.header`
   }
 `
 
-export const HeaderPostContainer = styled.div`
+export const HeaderProjectContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -40,6 +40,7 @@ export const HeaderPostContainer = styled.div`
         font-size: 0.9rem;
         line-height: 2rem;
       }
+
       .tags-content {
         display: flex;
         flex-wrap: wrap;
@@ -51,6 +52,8 @@ export const HeaderPostContainer = styled.div`
         border-radius: 6px;
       }
       }
+
+      
     }
 
   header {
@@ -108,7 +111,7 @@ export const CoverImageContainer = styled.div`
 
 export const DescriptionContainer = styled.div`
   p {
-    margin-top: 1rem;
+    margin-top: 4.5rem;
     font-size: 1.2rem;
   }
 `
