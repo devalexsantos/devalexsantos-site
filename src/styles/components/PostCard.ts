@@ -7,12 +7,6 @@ export const PostCardContainer = styled.div`
   width: 100%;
   margin: auto;
 
-  p {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
   
 `
 

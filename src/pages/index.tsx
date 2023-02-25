@@ -62,7 +62,7 @@ export default function Home({personalInfo, featuredProjects, favoritePosts}: Ho
         <h2>meus projetos mais legais</h2>
         <CardsContainer>
           {featuredProjects.map((project, index)=>(
-            <Link key={index} href={`/project/${project.slug}`}><ProjectCard project={project as ProjectTypes} /></Link>
+            <ProjectCard key={index} project={project as ProjectTypes} />
           ))}
         </CardsContainer>
         <Link className="more-projects-link" href="/">ver mais</Link>

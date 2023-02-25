@@ -32,7 +32,6 @@ export function PostCard({post}: PostTypes){
       </TagContainer>
       <h3>{post.title}</h3>
       <p>{post.shortDescription}</p>
-      
     </PostCardContainer>
   )
 }

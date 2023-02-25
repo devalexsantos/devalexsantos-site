@@ -1,10 +1,13 @@
-import { ProductImageContainer, ProjectCardContainer, TagContainer } from '@/styles/components/ProjectCard';
+import { LinksProjectContainer, ProductImageContainer, ProjectCardContainer, TagContainer } from '@/styles/components/ProjectCard';
 import Image from 'next/image';
+import { Code, Link } from 'phosphor-react';
 
 interface ProjectType {
   project: {
     title: string
     slug: string
+    projectLink: string
+    sourceCodeLink: string
     shortDescription: string
     contentDescription: string
     coverImage: {
@@ -29,7 +32,10 @@ export function ProjectCard({project}: ProjectType){
       </TagContainer>
       <h3>{project.title}</h3>
       <p>{project.shortDescription}</p>
-      
+      <LinksProjectContainer>
+        <a href={project.projectLink} target="_blank" rel='noreferrer'><Link size={24} /> ver online</a>
+        <a href={project.sourceCodeLink} target="_blank" rel='noreferrer'><Code size={24} /> ver código</a>
+      </LinksProjectContainer>
     </ProjectCardContainer>
   )
 }

@@ -97,12 +97,6 @@ export const MyProjectsContainer = styled.div`
     height: 100%;
   }
 
-  p {
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
   a.more-projects-link {
     padding: 0.3rem 1rem;
     border: 1px solid ${(props)=> props.theme.base};

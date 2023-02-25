@@ -6,6 +6,8 @@ export async function getFeaturedProjects(){
       projects(where: {favorite: true}) {
         title
         slug
+        projectLink
+    		sourceCodeLink
         shortDescription
         contentDescription
         coverImage {

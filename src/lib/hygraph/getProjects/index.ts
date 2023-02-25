@@ -5,6 +5,8 @@ export async function getProjects(){
     `{
       projects {
         title
+        projectLink
+    		sourceCodeLink
         shortDescription
         contentDescription
         coverImage {

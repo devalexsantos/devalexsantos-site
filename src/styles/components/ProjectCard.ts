@@ -6,8 +6,31 @@ export const ProjectCardContainer = styled.div`
   border-radius: 8px;
   width: 100%;
   margin: auto;
+`
 
-  
+export const LinksProjectContainer = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+
+  a {
+    border: 1px solid ${(props)=> props.theme.base};
+    border-radius: 6px;
+    color: ${(props)=> props.theme.base};
+    background: none;
+    cursor: pointer;
+
+    padding: 3px 6px;
+
+    display: flex;
+    gap: 3px;
+    align-items: center;
+
+    &:hover {
+      background-color: ${(props)=> props.theme.base};
+      color: ${(props)=> props.theme.secondary};
+    }
+  }
 `
 
 export const ProductImageContainer = styled.div`
