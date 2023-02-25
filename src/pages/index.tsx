@@ -7,6 +7,7 @@ import { CardsContainer, HeaderContainer, HomeContainer, ImageContainer, InfoCon
 import Head from 'next/head';
 import Image from 'next/image';
 import { ArrowSquareOut, FilePdf, GithubLogo } from 'phosphor-react';
+import { Element } from 'react-scroll'
 
 
 
@@ -23,6 +24,7 @@ export default function Home({personalInfo, featuredProjects}: HomeProps) {
       <title>Alex Santos | Developer</title>
     </Head>
     <HomeContainer>
+    <Element name="home">
       <HeaderContainer>
         <ImageContainer>
           <Image src={personalInfo[0].personalPhoto.url} width={180} height={180} alt="Alex's Photo"/>
@@ -53,16 +55,19 @@ export default function Home({personalInfo, featuredProjects}: HomeProps) {
           </footer>
         </InfoContent>
       </HeaderContainer>
-      <MyProjectsContainer>
-        <h2>alguns projetos legais</h2>
-        <CardsContainer>
-          {featuredProjects.map((project, index)=>(
-            <ProjectCard key={index} project={project as ProjectTypes} />
-          ))}
-        </CardsContainer>
-        <a className="more-projects-link" href="https://github.com/devalexsantos" target="_blank" rel='noreferrer'><GithubLogo size={24} /> ver mais no github</a>
-      </MyProjectsContainer>
+    </Element>
 
+    <Element name="projects">
+      <MyProjectsContainer>
+          <h2>alguns projetos legais</h2>
+          <CardsContainer>
+            {featuredProjects.map((project, index)=>(
+              <ProjectCard key={index} project={project as ProjectTypes} />
+            ))}
+          </CardsContainer>
+          <a className="more-projects-link" href="https://github.com/devalexsantos" target="_blank" rel='noreferrer'><GithubLogo size={24} /> ver mais no github</a>
+        </MyProjectsContainer>
+    </Element>
     </HomeContainer>
     </>
   )
