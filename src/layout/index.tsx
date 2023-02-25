@@ -42,26 +42,19 @@ export function Layout({children}: LayoutProps){
           <DropdownMenu.Portal>
             <NavContent>
               <NavItem>
-                {/* <Link href="/"><strong>Início</strong></Link> */}
-                
+                <Link to="home" offset={-70}>Início</Link>
               </NavItem>
 
               <NavSeparator />
 
               <NavItem>
-                {/* <Link href="/projects"><strong>Projetos</strong></Link> */}
+                <Link to="projects" offset={-70}>Projetos</Link>
               </NavItem>
 
               <NavSeparator />
 
               <NavItem>
-                  {/* <Link href="/posts"><strong>Posts</strong></Link> */}
-              </NavItem>
-
-              <NavSeparator />
-
-              <NavItem>
-                  {/* <Link href="#about"><strong>Sobre</strong></Link> */}
+                <Link to="about" offset={-50}>Sobre</Link>
               </NavItem>
             </NavContent>
           </DropdownMenu.Portal>
