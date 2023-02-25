@@ -1,26 +1,21 @@
 import { PersonalInfoTypes } from '@/@types/PersonalInfo';
-import { PostTypes } from '@/@types/PostTypes';
 import { ProjectTypes } from '@/@types/Project';
-import { PostCard } from '@/componentes/PostCard';
 import { ProjectCard } from '@/componentes/ProjectCard';
-import { getFavoritePosts } from '@/lib/hygraph/getFavoritePosts';
 import { getFeaturedProjects } from '@/lib/hygraph/getFeaturedProjects';
 import { getPersonalInfo } from '@/lib/hygraph/getPersonalInfo';
 import { CardsContainer, HeaderContainer, HomeContainer, ImageContainer, InfoContent, MyPostsContainer, MyProjectsContainer } from '@/styles/pages/home';
 import Head from 'next/head';
 import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowSquareOut, FilePdf } from 'phosphor-react';
+import { ArrowSquareOut, FilePdf, GithubLogo } from 'phosphor-react';
 
 
 
 interface HomeProps {
   personalInfo: PersonalInfoTypes[]
   featuredProjects: ProjectTypes[]
-  favoritePosts: PostTypes[]
 }
 
-export default function Home({personalInfo, featuredProjects, favoritePosts}: HomeProps) {
+export default function Home({personalInfo, featuredProjects}: HomeProps) {
 
   return (
     <>
@@ -59,28 +54,15 @@ export default function Home({personalInfo, featuredProjects, favoritePosts}: Ho
         </InfoContent>
       </HeaderContainer>
       <MyProjectsContainer>
-        <h2>meus projetos mais legais</h2>
+        <h2>alguns projetos legais</h2>
         <CardsContainer>
           {featuredProjects.map((project, index)=>(
             <ProjectCard key={index} project={project as ProjectTypes} />
           ))}
         </CardsContainer>
-        <Link className="more-projects-link" href="/">ver mais</Link>
+        <a className="more-projects-link" href="https://github.com/devalexsantos" target="_blank" rel='noreferrer'><GithubLogo size={24} /> ver mais no github</a>
       </MyProjectsContainer>
 
-      <MyPostsContainer>
-        <h2>meus últimos posts</h2>
-        <CardsContainer>
-          {favoritePosts.map((post, index)=>(
-            <Link key={index} href={`/post/${post.slug}`}>
-              <PostCard post={post as PostTypes} />
-            </Link>
-          ))}
-        </CardsContainer>
-        <Link className="more-projects-link" href="/">ver mais</Link>
-      </MyPostsContainer>
-
-      
     </HomeContainer>
     </>
   )
@@ -89,13 +71,11 @@ export default function Home({personalInfo, featuredProjects, favoritePosts}: Ho
 export const getStaticProps = async () => {
   const personalInfo = await getPersonalInfo()
   const featuredProjects = await getFeaturedProjects()
-  const favoritePosts = await getFavoritePosts()
 
   return {
     props: {
       personalInfo,
       featuredProjects,
-      favoritePosts
     },
     revalidate: 10
   }

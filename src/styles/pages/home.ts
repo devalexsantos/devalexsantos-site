@@ -102,6 +102,10 @@ export const MyProjectsContainer = styled.div`
     border: 1px solid ${(props)=> props.theme.base};
     border-radius: 6px;
 
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
 
     &:hover {
       background-color: ${(props)=> props.theme.base};
