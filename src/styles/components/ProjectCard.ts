@@ -5,11 +5,16 @@ export const ProjectCardContainer = styled.div`
   padding: 1rem;
   border-radius: 8px;
   width: 100%;
+  height: 100%;
   margin: auto;
+
+  display: flex;
+  flex-direction: column;
 `
 
 export const LinksProjectContainer = styled.div`
-  margin-top: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
   display: flex;
   gap: 1rem;
 
@@ -38,6 +43,7 @@ export const ProductImageContainer = styled.div`
   justify-content: center;
   img {
       border-radius: 6px;
+      height: 250px !important;
   }
 `
 
