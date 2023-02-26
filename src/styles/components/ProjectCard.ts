@@ -16,6 +16,7 @@ export const LinksProjectContainer = styled.div`
   margin-top: auto;
   padding-top: 1rem;
   display: flex;
+  justify-content: center;
   gap: 1rem;
 
   a {

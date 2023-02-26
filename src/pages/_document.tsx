@@ -29,6 +29,8 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
           <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet" />
+          <meta name="description" content="Site Pessoal - Alex Santos | Desenvolvedor Front End"></meta>
+          <meta property="og:image" content="https://github.com/devalexsantos.png" />
         </Head>
         <body>
           <Main />
