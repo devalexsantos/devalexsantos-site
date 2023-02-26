@@ -32,7 +32,7 @@ export default function Home({personalInfo, featuredProjects}: HomeProps) {
         <InfoContent>
           <header>
           <h1>{personalInfo[0].name}</h1>
-          <a>SOURCE <ArrowSquareOut size={22} /></a>
+          <a href="https://github.com/devalexsantos/devalexsantos-site" target="_blank" rel='noreferrer'>SOURCE <ArrowSquareOut size={22} /></a>
           </header>
           <p>{personalInfo[0].description}</p>
           <footer>
